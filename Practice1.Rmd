@@ -1,0 +1,34 @@
+---
+title: "Practice"
+author: "Stephanie Wiegman"
+date: "Sept 9, 2025"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## BACKGROUND
+
+Fill in some text for background on west nile virus system, bloodmeal dna extraction, PCR, sequencing
+
+```{r viremia}
+
+```
+
+## MAJOR QUESTION
+
+Fill in question you want to answer
+
+```{r name-1}
+
+```
+
+#METHODS
+
+#FIRST ANALYSIS
+
+#SECOND ANALYSIS
+
+I can write anything here as standard text. For **Bolded text** I use stars. The header must have a space after the # for it to work. 
