@@ -1,0 +1,53 @@
+---
+title: "Final_Draft"
+author: "Stephanie Wiegman"
+date: "`r Sys.Date()`"
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+```
+
+#ABSTRACT
+
+#BACKGROUND
+
+#QUESTIONS AND HYPOTHESIS
+
+##Question
+
+##Hypothesis
+
+##Prediction
+
+#METHODS
+
+##Figure 1: Scatterplot
+```{r scatterplot, warning=FALSE}
+data <- read.csv("UtahFireflies_Revised.csv")
+
+ggplot(data, aes(x=Month, y=Instance)) + 
+  geom_point(size=3, fill="black", alpha=.8) + 
+  geom_smooth(method='lm') +
+  xlab("Date (m)") + # X-axis label
+  ylab("Observation instances") # Y-axis label
+```
+
+##Figure 2
+```{r figure 2, warning= FALSE}
+
+```
+
+#DISCUSSION
+
+#CONCLUSION
+
+#REFERENCES
+
+Citizen Science Libraries. (n.d.). UtahFireflies. Google Docs. Retrieved October 30, 2025, from https://docs.google.com/spreadsheets/d/1XLklQd6P3d9wYnmh-3KgzNvP8GfQHL2Y2IyaZMwIOzk/edit?usp=drive_web&ouid=106039106225729317949&usp=embed_facebook
+
