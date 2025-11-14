@@ -1,7 +1,7 @@
 Final_Draft
 ================
-Stephanie Wiegman
-2025-11-11
+Stephanie Spencer
+2025-11-14
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
@@ -12,6 +12,9 @@ Stephanie Wiegman
   - [Figure 2](#figure-2)
   - [Figure 3](#figure-3)
 - [DISCUSSION](#discussion)
+  - [Analysis of Figure 1](#analysis-of-figure-1)
+  - [Analysis of Figure 2](#analysis-of-figure-2)
+  - [Analysis of Figure 3](#analysis-of-figure-3)
 - [CONCLUSION](#conclusion)
 - [REFERENCES](#references)
 
@@ -20,14 +23,16 @@ Stephanie Wiegman
 # BACKGROUND
 
 Citizens have the power to help scientific observations move along. The
-widespread ability to collect datad is amazing. Using their observations
+widespread ability to collect data is amazing. Using their observations
 of fireflies across Utah we have the opportunity to monitor the firefly
-population across the years. This dataset includes retroactive data from
-before 2000, however, by focusing on the innformation in the recent
-years we can determine trends in the firefly population.
-
-drought? Factors that may influence it? Research on firefly conditions
-for habitat
+population across the years. This data set includes retroactive data
+from before 2000, however, by focusing on the information from 2016 to
+2024, we can determine more recent trends in the firefly population. In
+Evans et al. paper from 2019 they found a link between the larval stage
+abundance and the climate, where the temperature in the prevoius year
+would affect the abundance and timing of the next year’s larval stage.
+This is an indication that temeprature could be having an effect on the
+firefly abundance each year.
 
 # QUESTIONS AND HYPOTHESIS
 
@@ -38,18 +43,22 @@ and yearly conditions?
 
 ## Hypothesis
 
-We will see a \## Prediction We will see a common trend of when firefly
-activity/population peaks each month. We will see limited variation by
-year as their activity may not be reactive to the weather trends. \#
-METHODS unfinished Using a data set of firefly observations from Logan’s
+We will see a decrease in fireflies each year due to global warming or
+other temperature affects. \## Prediction We will see a common trend of
+when firefly activity/population peaks each month. We will see limited
+variation by year as their activity may not be reactive to the weather
+trends. \# METHODS Using a data set of firefly observations from Logan’s
 citizen science data, we could extract sighting dates, locations, and
 habitat type. The number sighted were concluded to be inconsistent
 results as many were estimated numbers and could be very easily skewed
 by perspective. Therefore, in this study we focused on the instance
 report. Counting how many times per month/year fireflies were observed.
 Using the ggplot2 package in R would could view how these trends differ
-over years. using xxx we can quantify how differnt they are. ADD MORE
-HERE
+by month over years. To zoom in more, we can use Julian days of the peak
+observation day of each year to show if the fireflies are peaking
+earlier or later. This data can be compared with climate/weather data.
+To quantify how different each year was, and if there was a linear trend
+we used linear modeling and ANOVA test for signifigance.
 
 ## Figure 1
 
@@ -63,7 +72,7 @@ ggplot(data, aes(x = Month)) +
   theme_minimal()
 ```
 
-![](Final_Draft_files/figure-gfm/figure%202-1.png)<!-- -->
+![](Final_Draft_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
 #Edited with AI to implement/ fix these functions.
@@ -76,20 +85,20 @@ ggplot(data, aes(x = Month)) +
 table_Julian <- table(data$Year, data$Julian)
 #find the max count each year
 max_col <- apply(table_Julian, 1, which.max) 
-# create a data frame with year and max julian day
-numb_Julian <- as.numeric(colnames(table_Julian)[max_col])
-numb_year <- c(2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
+# create a data frame with year and max Julian day
+Max_Julian_Day <- as.numeric(colnames(table_Julian)[max_col])
+years <- c(2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
 #plot as scatter plot
-plot(numb_year, numb_Julian)
+plot(years, Max_Julian_Day, main = "Peak Days of Observations", xlab = "Year", ylab = "Julain Days")
 ```
 
-![](Final_Draft_files/figure-gfm/table%20of%20percentages/analysis-1.png)<!-- -->
+![](Final_Draft_files/figure-gfm/maximum%20Julian%20day-1.png)<!-- -->
 
 ## Figure 3
 
 ``` r
 #create data frame 
-Julian_dataframe <- data.frame(ColumnA = numb_Julian, ColumnB = numb_year)
+Julian_dataframe <- data.frame(ColumnA = Max_Julian_Day, ColumnB = years)
 m1 <- lm( ColumnA ~ ColumnB, data=Julian_dataframe)
 # run anova test for p value
 anova(m1)
@@ -125,6 +134,18 @@ summary(m1)
 
 # DISCUSSION
 
+## Analysis of Figure 1
+
+We see a consistency across the 9 years that firefly observations peak
+in June each year. The size of the peaks varies, with a seemingly
+decreased trend of observations. However, as this data come from citizen
+science many factors could impact the numbers including how often people
+continue to submit sightings after several years.
+
+## Analysis of Figure 2
+
+## Analysis of Figure 3
+
 # CONCLUSION
 
 # REFERENCES
@@ -132,6 +153,11 @@ summary(m1)
 Citizen Science Libraries. (n.d.). UtahFireflies. Google Docs. Retrieved
 October 30, 2025, from
 <https://docs.google.com/spreadsheets/d/1XLklQd6P3d9wYnmh-3KgzNvP8GfQHL2Y2IyaZMwIOzk/edit?usp=drive_web&ouid=106039106225729317949&usp=embed_facebook>
+
+Evans, T. R., Salvatore, D., van de Pol, M., & Musters, C. j. m. (2019).
+Adult firefly abundance is linked to weather during the larval stage in
+the previous year. Ecological Entomology, 44(2), 265–273.
+<https://doi.org/10.1111/een.12702>
 
 OpenAI. (2025, October 30). Barplot creation in R \[Generative AI
 chat\]. ChatGPT.
